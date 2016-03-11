@@ -3,15 +3,19 @@ package com.gldraphael.smsreceiverdemo.activities;
 import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.gldraphael.smsreceiverdemo.R;
 import com.gldraphael.smsreceiverdemo.receivers.SmsReceiver;
 
 public class MainActivity extends AppCompatActivity {
 
-    private SmsReceiver smsReceiver = new SmsReceiver(new SmsReceiver.OnVerificationCodeReceivedListener() {
+    private TextView prompt;
+    private TextView code;
+
+    private SmsReceiver smsReceiver = new SmsReceiver(new SmsReceiver.OnSmsReceivedListener() {
         @Override
-        public void onCodeReceived(String code) {
+        public void onSmsReceived(String code) {
             // TODO: handle event here
         }
     });

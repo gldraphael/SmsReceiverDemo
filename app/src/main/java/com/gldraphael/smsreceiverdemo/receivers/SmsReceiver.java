@@ -17,9 +17,9 @@ import java.util.regex.Pattern;
 public class SmsReceiver extends BroadcastReceiver {
     private static final String TAG = "###SMSReceiver";
 
-    private OnVerificationCodeReceivedListener listener;
+    private OnSmsReceivedListener listener;
 
-    public SmsReceiver(@NonNull OnVerificationCodeReceivedListener listener){
+    public SmsReceiver(@NonNull OnSmsReceivedListener listener){
         this.listener = listener;
     }
 
@@ -45,9 +45,9 @@ public class SmsReceiver extends BroadcastReceiver {
 
                         // get the verification code from the SMS
                         String verificationCode = getVerificationCode(message);
+                        listener.onSmsReceived(verificationCode);
                         if (verificationCode != null) {
                             Log.v(TAG, "Verification Code: " + verificationCode);
-                            listener.onCodeReceived(verificationCode);
                         }
                     }
                 }
@@ -71,7 +71,11 @@ public class SmsReceiver extends BroadcastReceiver {
         return null;
     }
 
-    public interface OnVerificationCodeReceivedListener {
-        void onCodeReceived(String code);
+    public interface OnSmsReceivedListener {
+        /**
+         * Called when an SMS is received from APP_NAME
+         * @param code The verification code (null if the code was not found)
+         */
+        void onSmsReceived(String code);
     }
 }
