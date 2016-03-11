@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">SMS Receiver Demo</string>
     <string name="prompt">Send an SMS to this phone to test</string>
+    <string name="parse_error">Couldn\'nt find the code in the SMS</string>
 </resources>

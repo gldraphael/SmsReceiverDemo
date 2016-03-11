@@ -10,13 +10,19 @@ import com.gldraphael.smsreceiverdemo.receivers.SmsReceiver;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView prompt;
-    private TextView code;
+    private TextView txtPrompt;
+    private TextView txtCode;
 
     private SmsReceiver smsReceiver = new SmsReceiver(new SmsReceiver.OnSmsReceivedListener() {
         @Override
         public void onSmsReceived(String code) {
-            // TODO: handle event here
+            if(code == null) {
+                txtPrompt.setText(R.string.parse_error);
+                txtCode.setText(null);
+            }
+            else {
+                txtCode.setText(code);
+            }
         }
     });
 
@@ -24,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        txtPrompt = (TextView) findViewById(R.id.txtPrompt);
+        txtCode = (TextView) findViewById(R.id.txtCode);
     }
 
     @Override
