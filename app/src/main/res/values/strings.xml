@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">SmsReceiverDemo</string>
+    <string name="app_name">SMS Receiver Demo</string>
+    <string name="prompt">Send an SMS to this phone to test</string>
 </resources>
