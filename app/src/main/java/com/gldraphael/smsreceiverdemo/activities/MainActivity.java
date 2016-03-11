@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else {
                 txtCode.setText(code);
+                txtPrompt.setText(R.string.parse_success);
             }
         }
     });
